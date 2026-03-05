@@ -44,3 +44,30 @@ This capstone project focuses on the computational analysis of the Brain_GSE5016
   - Normal
   - Pilocytic Astrocytoma
 
+### Why This Matters
+
+Brain cancer remains one of the most aggressive malignancies worldwide. Different subtypes (glioblastoma vs ependymoma) require vastly different treatment approaches. Our work demonstrates that:
+
+- **Full genome sequencing isn't necessary** - just 30 genes provide 92%+ accuracy
+- **Machine learning can identify subtle genetic patterns** invisible to traditional analysis
+- **Cost-effective diagnostic panels** can be developed using our elite gene signature
+- **Precision oncology** becomes more accessible with targeted genetic testing
+
+
+### Model Performance Evolution
+
+| Phase | Model | Features | Accuracy |
+|-------|-------|----------|----------|
+| 1 | Logistic Regression | 100 | 84.62% |
+| 2 | Random Forest | 100 | 88.46% |
+| 3 | RFE + Random Forest | 30 | 92.31% |
+| 4 | GridSearchCV Tuned | 30 | 92.31% |
+
+### Real-World Applications
+
+- **Clinical Diagnostics**: Develop PCR-based test panels targeting the 30 elite genes
+- **Drug Discovery**: Investigate top biomarkers as therapeutic targets
+- **Treatment Planning**: Faster, more accurate subtype identification
+- **Research Tool**: Open-source pipeline for other cancer type analysis
+
+
