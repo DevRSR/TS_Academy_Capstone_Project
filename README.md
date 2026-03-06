@@ -15,7 +15,7 @@
 ## Team Members (Group 19)
 
 | S/N | Name | Role | GitHub | Email |
-|---|----------|-------------|------------|----------|
+|------|--------------|----------------|---------------|-------------|
 | 1 | **EIJE, OLOCHE CELESTINE** | Team Lead | [@Eije1](https://github.com/Eije1) | eijeoloche1@gmail.com |
 | 2 | **AREMU, JACOBS OPEYEMI** | Member | [@aremu-jacobs](https://github.com/aremu-jacobs) | jacobsage4ril@gmail.com |
 | 3 | **IKHALEA, EMMANUEL** | Member | [@DeveloperIkhalea](https://github.com/DeveloperIkhalea) | Dev.ikhalea@gmail.com |
@@ -38,9 +38,20 @@ Brain cancer remains one of the most aggressive and life-threatening malignancie
 - Contribute to research output on oncology and genetics engineering
 - Address challenges of high dimensionality and small sample size
 
-### **1.2 Why This Matters**
 
-| Challenges | Solutions |
+### **1.2 Public Health Impact**
+
+| Global Statistics | Values of Public Impact |
+|--------------|---------|
+| **Global Brain Cancer Cases (Yearly)** | ~300,000 |
+| **Brain Cancer Deaths (Yearly)** | ~240,000 |
+| **Pediatric Brain Tumors** | Most common solid tumor in children |
+| **Diagnostic Misclassification Rate** | 5-15% in challenging cases |
+| **Treatment Delay Impact** | 30% poorer outcomes per month delay |
+
+### **1.3 Why This Matters**
+
+| Project Challenges | Solutions |
 |-----------|--------------|
 | 54,676 genes make analysis complex | **30 genes** provide 92%+ accuracy |
 | Traditional analysis misses subtle patterns | **ML identifies** hidden genetic signatures |
@@ -48,8 +59,7 @@ Brain cancer remains one of the most aggressive and life-threatening malignancie
 | Treatment varies by subtype | **Precision oncology** becomes accessible |
 
 
-
-## **2. Dataset Description**
+## **2. Dataset Description and Importance**
 The Brain_GSE50161 dataset contains gene expression profiles from 130 human brain tissue samples, comprising four distinct tumor types and normal tissue controls. This microarray data provides a comprehensive molecular portrait of brain cancer subtypes.
 - **Data Name:** Brain_GSE50161.csv 
 - **Size of Data:** >120MB
@@ -57,18 +67,18 @@ The Brain_GSE50161 dataset contains gene expression profiles from 130 human brai
 - **Source:** Kaggle [https://www.kaggle.com/datasets/brunogrisci/brain-cancer-gene-expression-cumida]
 
 ### **2.1 Dataset Statistics**
----
-| Attribute | Value |
-|-----------|-------|
+
+| Attribute of the Dataset | Corresponding Values|
+|--------------|-------------|
 | **Total Samples** | 130 patient samples |
 | **Gene Features** | 54,676 gene expression probes |
 | **Classes** | 5 (4 tumor types  + normal) |
 | **Data Type** | Microarray gene expression |
 
 ### **2.2 Class Distribution**
----
-| Class | Count | Percentage |
-|-------|-------|------------|
+
+| Class of the Tumor (Types) | Count of the Tumor Types| Percentage of the Tumor Types|
+|------------------|-------------------|---------------------|
 | Ependymoma | 46 | 35.4% |
 | Glioblastoma | 34 | 26.2% |
 | Medulloblastoma | 22 | 16.9% |
@@ -76,38 +86,16 @@ The Brain_GSE50161 dataset contains gene expression profiles from 130 human brai
 | Normal | 13 | 10.0% |
 
 
-### **2.3 Why This Dataset Matters**
-The **Brain_GSE50161** dataset was specifically selected for this capstone project because it addresses critical gaps in brain cancer research and clinical practice. These four tumor types represent the spectrum of brain cancer aggressiveness—from highly lethal glioblastoma to highly treatable pilocytic astrocytoma. Accurate classification is essential for determining the appropriate treatment pathway:
+### **2.3 Clinical Relevance**
 
-#### **2.3.1 Clinical Relevance**
-
-| Brain Cancer Type | Annual Cases (Global) | 5-Year Survival | Challenge |
-|-------------------|----------------------|-----------------|-----------|
+| Brain Cancer Type | Annual Cases (Global Records) | 5-Year Survival | Challenge |
+|-----------------------|---------------------------|---------------------|---------------|
 | **Glioblastoma** | ~3-4 per 100,000 | <10% | Most aggressive; treatment resistance |
 | **Medulloblastoma** | ~0.5 per 100,000 | 70-80% (children) | Pediatric focus; treatment toxicity |
 | **Ependymoma** | ~0.2 per 100,000 | 50-80% | Location-dependent outcomes |
 | **Pilocytic Astrocytoma** | ~0.8 per 100,000 | >90% | Often curable but requires surgery |
 
-#### **2.3.2 Public Health Impact**
-
-| Statistic | Value |
-|-----------|-------|
-| **Global Brain Cancer Cases (Yearly)** | ~300,000 |
-| **Brain Cancer Deaths (Yearly)** | ~240,000 |
-| **Pediatric Brain Tumors** | Most common solid tumor in children |
-| **Diagnostic Misclassification Rate** | 5-15% in challenging cases |
-| **Treatment Delay Impact** | 30% poorer outcomes per month delay |
-
-#### **2.3.3 Why Machine Learning**
-
-| Approach | Limitation | Why ML Solves It |
-|----------|------------|------------------|
-| Single-gene biomarkers | Low specificity | **Multivariate patterns** capture complex biology |
-| Statistical tests | Miss interactions | **Tree-based models** find gene-gene interactions |
-| Expert review | Subjective, variable | **Reproducible** algorithms |
-| Full sequencing | Expensive | **30-gene panel** reduces cost by 99.95% |
-
-#### **2.3.4 Comparison with Alternatives and Literature**
+### **2.6 Comparison with Alternatives and Literature**
 
 | Dataset | Samples | Genes | Tumor Types | Why We Chose This |
 |---------|---------|-------|-------------|-------------------|
@@ -116,13 +104,42 @@ The **Brain_GSE50161** dataset was specifically selected for this capstone proje
 | REMBRANDT | 671 | ~22,000 | 3 | Older platform |
 | GSE4290 | 180 | ~54,000 | 3 + normal | Similar but fewer tumor types |
 
-#### **2.3.5 Conclusion:**
-- **Four distinct tumor types** + normal controls
-- **Comprehensive gene coverage** (Affymetrix U133 Plus 2.0)
-- **Publicly available** with no access restrictions
-- **Well-cited** in literature (validated dataset)
+## **3. Methodology**
+We imported the dataset via Google Colab, removed non-informative columns, and encoded categorical labels. We utilized StandardScaler to normalize gene expression values and audited the data for consistency. After which we carried out an Exploratory Data Analysis (EDA) where we performed class distribution analysis using df.info() and df.describe(). Data visualization was conducted using Matplotlib and Seaborn to identify trends and feature correlations. Furthermore, we did feature selection to employ a multi-stage pipeline which includes variance threshold filtering, ANOVA F-tests (SelectKBest), and feature importance ranking using Random Forest. After we finished the above steps, we developed Machine Learning Models where we developed a Logistic Regression baseline model and a high-performance Random Forest Classifier model. After which we went ahead to develop a RFE selection and a Hyperparameter Tuning. Below is the summary workflow of our methodology. In addition to this, we utilized an 80/20 Train-Test split and 5-Fold Cross-Validation to ensure model stability while investigating and measuring our model performance using Accuracy, Precision, Recall, and F1-score. Finally, Confusion Matrices were generated to visualize classification performance across subtypes. Below is the summary workflow of our project:
+  
+### **3.1 Data Preprocessing**
+- Data cleaning and missing value check
+- Feature renaming (Gene 1 to Gene 54675)
+- Visualizing of our data to discover trends
+- StandardScaler normalization
+- Label encoding for target variable
 
+### **3.2 Feature Selection**
+- Variance threshold filtering
+- ANOVA F-tests (SelectKBest)
+- Random Forest feature importance
+- Recursive Feature Elimination (RFE)
 
+### **3.3 Machine Learning Models**
+- Logistic Regression (Baseline)
+- Random Forest Classifier**
+- Random Forest with RFE + Hyperparameter Tuning
+
+### **3.4 Evaluation Strategy**
+- 80/20 Train-Test split
+- 5-Fold Cross-Validation
+- Metrics: Accuracy, Precision, Recall, F1-score
+- Confusion Matrix analysis
+
+### **3.5 Why Machine Learning**
+Traditional bioinformatics approaches struggle with high-dimensional gene expression data, missing complex non-linear interactions between genes. Machine learning excels by identifying multivariate patterns across thousands of features simultaneously. Our Random Forest model captures subtle gene-gene interactions invisible to conventional statistics, enabling 92.31% accurate classification—a feat impossible with single-gene biomarkers or traditional methods.
+
+| Bioinformatics Approach | Limitation of the Approach| Why Machine Learning Solves It |
+|--------------------|-------------------------|---------------------------|
+| Single-gene biomarkers | Low specificity | **Multivariate patterns** capture complex biology |
+| Statistical tests | Miss interactions | **Tree-based models** find gene-gene interactions |
+| Expert review | Subjective, variable | **Reproducible** algorithms |
+| Full sequencing | Expensive | **30-gene panel** reduces cost by 99.95% |
 
 ## Metrics
 
@@ -223,24 +240,6 @@ The **Brain_GSE50161** dataset was specifically selected for this capstone proje
 
 
 
-
-
-
-## 👥 Team Members (Group 19)
-
-| Name | Role | GitHub | Email |
-|------|------|--------|-------|
-| **Eije, Oloche Celestine** | Team Lead | [@Eije1](https://github.com/Eije1) | eijeoloche1@gmail.com |
-| Aremu, Jacobs Opeyemi | Member | [@aremu-jacobs](https://github.com/aremu-jacobs) | jacobsage4ril@gmail.com |
-| Ikhalea, Emmanuel | Member | [@DeveloperIkhalea](https://github.com/DeveloperIkhalea) | Dev.ikhalea@gmail.com |
-| David, Brainerd | Member | [@Brainerd007](https://github.com/Brainerd007) | brainerddavid9@gmail.com |
-| Ezeokwelume, Mary | Member | [@obyokwelume-coder](https://github.com/obyokwelume-coder) | obyokwelume@gmail.com |
-| Itunu, Ifeoluwa Adeniji | Member | [@Ife-ahav](https://github.com/Ife-ahav/Ife.git) | itunuadeniji31@gmail.com |
-| Ajibola, Joshua | Member | [@JManBoss](https://github.com/JManBoss/joshman.github.io.git) | joshuaajibola00@gmail.com |
-| Raji, Ridwanullah | Member | [@DevRSR](https://github.com/DevRSR) | rajiridwanullah25@gmail.com |
-| Sule, Wasiu Ayinde | Member | [@Engrbolajipraise1](https://github.com/Engrbolajipraise1) | bolajipraise1@gmail.com |
-| Muhammed, Olatunji Tiamiyu | Member | [@olatunjee9](https://github.com/olatunjee9) | tiamiyuolatunji1@gmail.com |
-
 ## 📊 Key Findings
 
 - **Best Model:** Random Forest achieved **92.31% accuracy** after hyperparameter tuning
@@ -249,23 +248,6 @@ The **Brain_GSE50161** dataset was specifically selected for this capstone proje
 - **Key Biomarkers:** Identified Gene 54638 and Gene 33848 as top discriminators
 - **PCA Analysis:** First 2 components explain significant variance in tumor subtypes
 
-## 📁 Dataset
-
-**Source:** Brain_GSE50161.csv from Gene Expression Omnibus (GEO)
-
-| Attribute | Value |
-|-----------|-------|
-| Samples | 130 |
-| Features | 54,676 genes |
-| Classes | 5 (4 tumor types + normal) |
-| Tumor Types | Ependymoma, Glioblastoma, Medulloblastoma, Pilocytic Astrocytoma, Normal |
-
-**Class Distribution:**
-- Ependymoma: 46 samples
-- Glioblastoma: 34 samples
-- Medulloblastoma: 22 samples
-- Pilocytic Astrocytoma: 15 samples
-- Normal: 13 samples
 
 ## 🔬 Methodology
 
@@ -353,32 +335,8 @@ The **Brain_GSE50161** dataset was specifically selected for this capstone proje
 | Baseline Improvement | +7.69% over Logistic Regression |
 
 
-## Dataset
----
-**Source:** [Gene Expression Omnibus (GEO)]([https://www.ncbi.nlm.nih.gov/geo/](https://www.kaggle.com/datasets/brunogrisci/brain-cancer-gene-expression-cumida)) - Brain_GSE50161
 
-### Dataset Statistics
 
-| Attribute | Value |
-|-----------|-------|
-| **Total Samples** | 130 |
-| **Gene Features** | 54,676 |
-| **Classes** | 5 (4 tumor types + normal) |
-| **Data Type** | Microarray gene expression |
-
-### Class Distribution
-
-| Class | Count | Percentage |
-|-------|-------|------------|
-| Ependymoma | 46 | 35.4% |
-| Glioblastoma | 34 | 26.2% |
-| Medulloblastoma | 22 | 16.9% |
-| Pilocytic Astrocytoma | 15 | 11.5% |
-| Normal | 13 | 10.0% |
-
-<p align="center">
-  <img src="figures/class_distribution.png" alt="Class Distribution" width="500"/>
-</p>
 
 ---
 
