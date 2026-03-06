@@ -37,28 +37,7 @@ Brain cancer remains one of the most aggressive and life-threatening malignancie
 - Evaluate therapeutic insights for precision oncology applications
 - Contribute to research output on oncology and genetics engineering
 - Address challenges of high dimensionality and small sample size
-
-
-### **1.2 Public Health Impact**
-
-| Global Statistics | Values of Public Impact |
-|--------------|---------|
-| **Global Brain Cancer Cases (Yearly)** | ~300,000 |
-| **Brain Cancer Deaths (Yearly)** | ~240,000 |
-| **Pediatric Brain Tumors** | Most common solid tumor in children |
-| **Diagnostic Misclassification Rate** | 5-15% in challenging cases |
-| **Treatment Delay Impact** | 30% poorer outcomes per month delay |
-
-### **1.3 Why This Matters**
-
-| Project Challenges | Solutions |
-|-----------|--------------|
-| 54,676 genes make analysis complex | **30 genes** provide 92%+ accuracy |
-| Traditional analysis misses subtle patterns | **ML identifies** hidden genetic signatures |
-| Full genome sequencing is expensive | **Cost-effective** diagnostic panels possible |
-| Treatment varies by subtype | **Precision oncology** becomes accessible |
-
-
+  
 ## **2. Dataset Description and Importance**
 The Brain_GSE50161 dataset contains gene expression profiles from 130 human brain tissue samples, comprising four distinct tumor types and normal tissue controls. This microarray data provides a comprehensive molecular portrait of brain cancer subtypes.
 - **Data Name:** Brain_GSE50161.csv 
@@ -141,31 +120,11 @@ Traditional bioinformatics approaches struggle with high-dimensional gene expres
 | Expert review | Subjective, variable | **Reproducible** algorithms |
 | Full sequencing | Expensive | **30-gene panel** reduces cost by 99.95% |
 
-## Metrics
 
-                       precision    recall  f1-score   support
-           ependymoma       1.00      0.89      0.94         9
-         glioblastoma       0.88      1.00      0.93         7
-      medulloblastoma       1.00      0.75      0.86         4
-               normal       1.00      1.00      1.00         3
-    pilocytic_astrocytoma   0.75      1.00      0.86         3
-             accuracy                           0.92        26
-            macro avg       0.93      0.93      0.92        26
-         weighted avg       0.94      0.92      0.92        26
+## **4 Results and Conclusion**
+From our results, We can now diagnose brain cancer subtypes with 92.31% accuracy using 30 genes instead of 54,676. We achieved this because our machine learning pipeline shows that Random Forest outperformed Logistic Regression, reaching a peak accuracy of 88.46% from 84.62% by capturing complex, non-linear biological relationships. However, to improve efficiency, we employed feature selection. Thus, we reduced the gene count from 54,675 to a 30-gene signature using the RFE method and Hypertuning which significantly improved model robustness and accuracy to 92.31% and also reduced overfitting. After this, we noticed that our final model maintained a solid 89.23% average Cross-Validation score which led to a team conclusion that computational analysis of microarray data is a powerful ally for precision oncology, enabling faster and more reliable tumor subtyping. In addition to this conclusion, we discovered our elite genes (biiomarkers and subsclassified these tumor types as shown below). Furthermore, we identified Gene 54638 and Gene 33848 as top discriminators. Below is the summary of our results:
 
-## Confusion Matrix
-
-                     Predicted
-                     
-    Actual           Epi  Glio  Med  Nor  Pil
-    
-    Ependymoma        8    1    0    0    0
-    Glioblastoma      0    7    0    0    0
-    Medulloblastoma   1    0    3    0    0
-    Normal            0    0    0    3    0
-    Pilocytic Astro   0    0    0    0    3
-
-## Model Performance Evolution
+## **4.1 Model Performance Evolution**
 
 | Phase | Model | Features | Accuracy |
 |-------|-------|----------|----------|
@@ -175,7 +134,7 @@ Traditional bioinformatics approaches struggle with high-dimensional gene expres
 | 4 | GridSearchCV Tuned | 30 | 92.31% |
 
 
-## Elite Genes (Biomarker Discovery)
+## **4.2 Elite Genes (Biomarker Discovery)**
 
 
 | Rank | Probe ID | Importance Score |
@@ -211,71 +170,7 @@ Traditional bioinformatics approaches struggle with high-dimensional gene expres
 | 29 | 1556548_at | 0.0262 |
 | 30 | 1561486_at | 0.0122 |
 
-## Methodology
-
-- **Data Preprocessing:** We imported the dataset via Google Colab, removed non-informative columns, and encoded categorical labels. We utilized StandardScaler to normalize gene expression values and audited the data for consistency
-- **Exploratory Data Analysis (EDA):** We performed class distribution analysis using df.info() and df.describe(). Data visualization was conducted using Matplotlib and Seaborn to identify trends and feature correlations.
-- **Feature Selection:** We employed a multi-stage pipeline: Variance Threshold filtering, ANOVA F-tests (SelectKBest), and Feature Importance Ranking using Random Forest.
-- **Machine Learning Models:** We developed a Logistic Regression baseline and a high-performance Random Forest Classifier. After which we went ahead to develop a RFE selection and a Hyperparameter Tuning.
-
-## Model Evaluation
-
-- **Strategy:** We utilized an 80/20 Train-Test split and 5-Fold Cross-Validation to ensure model stability.
-- **Metrics:** Performance was measured using Accuracy, Precision, Recall, and F1-score.
-- **Error Analysis:** Confusion Matrices were generated to visualize classification performance across subtypes.
-
-## Results & Conclusion
-
-- **Best Model:** Random Forest outperformed Logistic Regression, reaching a peak accuracy of 88.46% from 84.62% by capturing complex, non-linear biological relationships.
-- **Efficiency:** Feature selection was vital; reducing the gene count from 54,675 to a 30-gene signature using the RFE method and Hypertuning significantly improved model robustness and accuracy to 92.31% and also reduced overfitting.
-- **Stability:** Our final model maintained a solid 89.23% average Cross-Validation score.
-- **Conclusion:** Computational analysis of microarray data is a powerful ally for precision oncology, enabling faster and more reliable tumor subtyping.
-
-### Real-World Applications
-
-- **Clinical Diagnostics**: Develop PCR-based test panels targeting the 30 elite genes
-- **Drug Discovery**: Investigate top biomarkers as therapeutic targets
-- **Treatment Planning**: Faster, more accurate subtype identification
-
-
-
-
-## 📊 Key Findings
-
-- **Best Model:** Random Forest achieved **92.31% accuracy** after hyperparameter tuning
-- **Feature Reduction:** Reduced from 54,675 genes to **30-gene signature** using RFE
-- **Cross-Validation:** Maintained **89.23%** average CV score
-- **Key Biomarkers:** Identified Gene 54638 and Gene 33848 as top discriminators
-- **PCA Analysis:** First 2 components explain significant variance in tumor subtypes
-
-
-## 🔬 Methodology
-
-### Data Preprocessing
-- ✅ Data cleaning and missing value check
-- ✅ StandardScaler normalization
-- ✅ Label encoding for target variable
-
-### Feature Selection
-- ✅ Variance threshold filtering
-- ✅ ANOVA F-tests (SelectKBest)
-- ✅ Random Forest feature importance
-- ✅ Recursive Feature Elimination (RFE)
-
-### Machine Learning Models
-1. **Logistic Regression** (Baseline)
-2. **Random Forest Classifier**
-3. **Random Forest with RFE + Hyperparameter Tuning**
-
-### Evaluation Strategy
-- 80/20 Train-Test split
-- 5-Fold Cross-Validation
-- Metrics: Accuracy, Precision, Recall, F1-score
-- Confusion Matrix analysis
-
-## 📈 Results
-
-### Model Performance Comparison
+### **4.3 Model Performance Comparison**
 
 | Model | Accuracy | Precision | Recall | F1-Score |
 |-------|----------|-----------|--------|----------|
@@ -283,131 +178,46 @@ Traditional bioinformatics approaches struggle with high-dimensional gene expres
 | Random Forest | 88.46% | 0.88 | 0.88 | 0.88 |
 | **Random Forest (Tuned + RFE)** | **92.31%** | **0.92** | **0.92** | **0.92** |
 
-### Top 10 Biomarkers Identified
 
-| Rank | Gene | Log2FC | p-value | -log10p |
-|------|------|--------|---------|---------|
-| 1 | Gene 54638 | ... | ... | ... |
-| 2 | Gene 33848 | ... | ... | ... |
-| 3 | Gene 51378 | ... | ... | ... |
-| 4 | Gene 15466 | ... | ... | ... |
-| 5 | Gene 31086 | ... | ... | ... |
-| 6 | Gene 18487 | ... | ... | ... |
-| 7 | Gene 19603 | ... | ... | ... |
-| 8 | Gene 11886 | ... | ... | ... |
-| 9 | Gene 19474 | ... | ... | ... |
-| 10 | Gene 15637 | ... | ... | ... |
+#### **4.1.1 Metrics**
 
+                            precision    recall  f1-score   support
+           ependymoma       1.00      0.89      0.94         9
+         glioblastoma       0.88      1.00      0.93         7
+      medulloblastoma       1.00      0.75      0.86         4
+               normal       1.00      1.00      1.00         3
+    pilocytic_astrocytoma   0.75      1.00      0.86         3
 
+             accuracy                           0.92        26
+            macro avg       0.93      0.93      0.92        26
+         weighted avg       0.94      0.92      0.92        26
 
+#### **4.1.2 Confusion Matrix**
 
-## 📋 Table of Contents
-- [Project Overview](#project-overview)
-- [Key Findings](#key-findings)
-- [Team Members](#team-members)
-- [Dataset](#dataset)
-- [Methodology](#methodology)
-- [Results](#results)
-- [Biomarker Discovery](#biomarker-discovery)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Model Performance](#model-performance)
-- [Repository Structure](#repository-structure)
-- [Real-World Applications](#real-world-applications)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-- [Acknowledgments](#acknowledgments)
-
----
+                     Predicted
+                     
+    Actual           Epi  Glio  Med  Nor  Pil
+    
+    Ependymoma        8    1    0    0    0
+    Glioblastoma      0    7    0    0    0
+    Medulloblastoma   1    0    3    0    0
+    Normal            0    0    0    3    0
+    Pilocytic Astro   0    0    0    0    3
 
 
----
+## **5. Licence**
+Copyright (c) 2026 Group 19 - TS ACADEMY Capstone Project
 
-## 📊 Key Findings
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-| Metric | Value |
-|--------|-------|
-| **Best Model Accuracy** | **92.31%** |
-| Feature Reduction | 54,675 → 30 genes (99.95% reduction) |
-| Cross-Validation Score | 89.23% |
-| Top Biomarkers | Gene 54638, Gene 33848 |
-| Baseline Improvement | +7.69% over Logistic Regression |
+    http://www.apache.org/licenses/LICENSE-2.0
 
-
-
-
-
----
-
-## Methodology
-
-### Data Preprocessing Pipeline
-
-```python
-# Key preprocessing steps
-1. Data loading and inspection
-2. Missing value check (none found)
-3. Feature renaming (Gene 1 to Gene 54675)
-4. StandardScaler normalization
-5. Label encoding for target variable
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
 
----
-
-## 📊 Key Findings
-
-| Metric | Value |
-|--------|-------|
-| **Best Model Accuracy** | **92.31%** |
-| Feature Reduction | 54,675 → 30 genes (99.95% reduction) |
-| Cross-Validation Score | 89.23% |
-| Top Biomarkers | Gene 54638, Gene 33848 |
-| Baseline Improvement | +7.69% over Logistic Regression |
-
----
-
-
-
----
-
-## Dataset
-
-**Source:** [Gene Expression Omnibus (GEO)](https://www.ncbi.nlm.nih.gov/geo/) - Brain_GSE50161
-
-### Dataset Statistics
-
-| Attribute | Value |
-|-----------|-------|
-| **Total Samples** | 130 |
-| **Gene Features** | 54,676 |
-| **Classes** | 5 (4 tumor types + normal) |
-| **Data Type** | Microarray gene expression |
-
-### Class Distribution
-
-| Class | Count | Percentage |
-|-------|-------|------------|
-| Ependymoma | 46 | 35.4% |
-| Glioblastoma | 34 | 26.2% |
-| Medulloblastoma | 22 | 16.9% |
-| Pilocytic Astrocytoma | 15 | 11.5% |
-| Normal | 13 | 10.0% |
-
-<p align="center">
-  <img src="figures/class_distribution.png" alt="Class Distribution" width="500"/>
-</p>
-
----
-
-## 🔬 Methodology
-
-### Data Preprocessing Pipeline
-
-```python
-# Key preprocessing steps
-1. Data loading and inspection
-2. Missing value check (none found)
-3. Feature renaming (Gene 1 to Gene 54675)
-4. StandardScaler normalization
-5. Label encoding for target variable
