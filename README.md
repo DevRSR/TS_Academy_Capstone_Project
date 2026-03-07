@@ -1,4 +1,4 @@
-# **TS ACADEMY Capstone Project - Group 19 (March 2026)**
+# TS ACADEMY Capstone Project - Group 19 (March 2026)
 
 ## Brain Cancer Gene Expression Analysis for Subtype Classification and Biomarker Discovery
 
@@ -27,10 +27,10 @@
 | 9 | **SULE, WASIU AYINDE** | Member | [@Engrbolajipraise1](https://github.com/Engrbolajipraise1) | bolajipraise1@gmail.com |
 | 10 | **MUHAMMED, OLATUNJI TIAMIYU** | Member | [@olatunjee9](https://github.com/olatunjee9) | tiamiyuolatunji1@gmail.com |
 
-# **Project Overview**
+# Project Overview
 Brain cancer remains one of the most aggressive and life-threatening malignancies worldwide. Studies shows that different subtypes (glioblastoma vs ependymoma) require vastly different treatment approaches, making accurate classification essential. Thus, this capstone project leverages machine learning and gene expression analysis to classify brain cancer subtypes and identify potential biomarkers for diagnostic and therapeutic applications.This capstone project focuses on the computational analysis of the Brain_GSE50161 dataset, containing 54,676 gene expression features across 130 samples representing four distinct brain cancer types (ependymoma, glioblastoma, medulloblastoma, pilocytic astrocytoma) and normal tissue. The primary objective is to develop machine learning models capable of accurately classifying brain cancer subtypes while identifying potential biomarkers for diagnostic and therapeutic applications.
 
-## **Aims and Objectives:**
+## Aims and Objectives:
 - Analyze gene expression patterns across 4 brain cancer subtypes and normal tissue, which drives tumor growth and subtype differentiation
 - Develop supervised learning models for accurate brain cancer subtype classification
 - Identify "Elite" genes (potential biomarkers) with highest diagnostic value
@@ -38,14 +38,14 @@ Brain cancer remains one of the most aggressive and life-threatening malignancie
 - Contribute to research output on oncology and genetics engineering
 - Address challenges of high dimensionality and small sample size
   
-# **Dataset Description and Importance**
+# Dataset Description and Importance
 The Brain_GSE50161 dataset contains gene expression profiles from 130 human brain tissue samples, comprising four distinct tumor types and normal tissue controls. This microarray data provides a comprehensive molecular portrait of brain cancer subtypes.
 - **Data Name:** Brain_GSE50161.csv 
 - **Size of Data:** >120MB
 - **Missing Values:** None
 - **Source:** Kaggle [https://www.kaggle.com/datasets/brunogrisci/brain-cancer-gene-expression-cumida]
 
-## **Dataset Statistics**
+## Dataset Statistics
 
 | Attribute of the Dataset | Corresponding Values|
 |--------------|-------------|
@@ -54,7 +54,7 @@ The Brain_GSE50161 dataset contains gene expression profiles from 130 human brai
 | **Classes** | 5 (4 tumor types  + normal) |
 | **Data Type** | Microarray gene expression |
 
-## **Class Distribution**
+## Class Distribution
 
 | Class of the Tumor (Types) | Count of the Tumor Types| Percentage of the Tumor Types|
 |------------------|-------------------|---------------------|
@@ -65,7 +65,7 @@ The Brain_GSE50161 dataset contains gene expression profiles from 130 human brai
 | Normal | 13 | 10.0% |
 
 
-## **Clinical Relevance**
+## Clinical Relevance
 
 | Brain Cancer Type | Annual Cases (Global Records) | 5-Year Survival | Challenge |
 |-----------------------|---------------------------|---------------------|---------------|
@@ -74,7 +74,7 @@ The Brain_GSE50161 dataset contains gene expression profiles from 130 human brai
 | **Ependymoma** | ~0.2 per 100,000 | 50-80% | Location-dependent outcomes |
 | **Pilocytic Astrocytoma** | ~0.8 per 100,000 | >90% | Often curable but requires surgery |
 
-## **Comparison with Alternatives and Literature**
+## Comparison with Alternatives and Literature
 
 | Dataset | Samples | Genes | Tumor Types | Why We Chose This |
 |---------|---------|-------|-------------|-------------------|
@@ -83,34 +83,34 @@ The Brain_GSE50161 dataset contains gene expression profiles from 130 human brai
 | REMBRANDT | 671 | ~22,000 | 3 | Older platform |
 | GSE4290 | 180 | ~54,000 | 3 + normal | Similar but fewer tumor types |
 
-# **Methodology**
+# Methodology
 We imported the dataset via Google Colab, removed non-informative columns, and encoded categorical labels. We utilized StandardScaler to normalize gene expression values and audited the data for consistency. After which we carried out an Exploratory Data Analysis (EDA) where we performed class distribution analysis using df.info() and df.describe(). Data visualization was conducted using Matplotlib and Seaborn to identify trends and feature correlations. Furthermore, we did feature selection to employ a multi-stage pipeline which includes variance threshold filtering, ANOVA F-tests (SelectKBest), and feature importance ranking using Random Forest. After we finished the above steps, we developed Machine Learning Models where we developed a Logistic Regression baseline model and a high-performance Random Forest Classifier model. After which we went ahead to develop a RFE selection and a Hyperparameter Tuning. Below is the summary workflow of our methodology. In addition to this, we utilized an 80/20 Train-Test split and 5-Fold Cross-Validation to ensure model stability while investigating and measuring our model performance using Accuracy, Precision, Recall, and F1-score. Finally, Confusion Matrices were generated to visualize classification performance across subtypes. Below is the summary workflow of our project:
   
-## **Data Preprocessing**
+## Data Preprocessing
 - Data cleaning and missing value check
 - Feature renaming (Gene 1 to Gene 54675)
 - Visualizing of our data to discover trends
 - StandardScaler normalization
 - Label encoding for target variable
 
-## **Feature Selection**
+## Feature Selection
 - Variance threshold filtering
 - ANOVA F-tests (SelectKBest)
 - Random Forest feature importance
 - Recursive Feature Elimination (RFE)
 
-## **Machine Learning Models**
+## Machine Learning Models
 - Logistic Regression (Baseline)
-- Random Forest Classifier**
+- Random Forest Classifier
 - Random Forest with RFE + Hyperparameter Tuning
 
-## **Evaluation Strategy**
+## Evaluation Strategy
 - 80/20 Train-Test split
 - 5-Fold Cross-Validation
 - Metrics: Accuracy, Precision, Recall, F1-score
 - Confusion Matrix analysis
 
-## **Why Machine Learning**
+## Why Machine Learning
 Traditional bioinformatics approaches struggle with high-dimensional gene expression data, missing complex non-linear interactions between genes. Machine learning excels by identifying multivariate patterns across thousands of features simultaneously. Our Random Forest model captures subtle gene-gene interactions invisible to conventional statistics, enabling 92.31% accurate classification—a feat impossible with single-gene biomarkers or traditional methods.
 
 | Bioinformatics Approach | Limitation of the Approach| Why Machine Learning Solves It |
@@ -121,10 +121,10 @@ Traditional bioinformatics approaches struggle with high-dimensional gene expres
 | Full sequencing | Expensive | **30-gene panel** reduces cost by 99.95% |
 
 
-# **Results and Conclusion**
+# Results and Conclusion
 From our results, We can now diagnose brain cancer subtypes with 92.31% accuracy using 30 genes instead of 54,676. We achieved this because our machine learning pipeline shows that Random Forest outperformed Logistic Regression, reaching a peak accuracy of 88.46% from 84.62% by capturing complex, non-linear biological relationships. However, to improve efficiency, we employed feature selection. Thus, we reduced the gene count from 54,675 to a 30-gene signature using the RFE method and Hypertuning which significantly improved model robustness and accuracy to 92.31% and also reduced overfitting. After this, we noticed that our final model maintained a solid 89.23% average Cross-Validation score which led to a team conclusion that computational analysis of microarray data is a powerful ally for precision oncology, enabling faster and more reliable tumor subtyping. In addition to this conclusion, we discovered our elite genes (biiomarkers and subsclassified these tumor types as shown below). Furthermore, we identified Gene 54638 and Gene 33848 as top discriminators. Below is the summary of our results:
 
-## **Model Performance Evolution**
+## Model Performance Evolution
 
 | Phase | Model | Features | Accuracy |
 |-------|-------|----------|----------|
@@ -134,7 +134,7 @@ From our results, We can now diagnose brain cancer subtypes with 92.31% accuracy
 | 4 | GridSearchCV Tuned | 30 | 92.31% |
 
 
-## **Elite Genes (Biomarker Discovery)**
+## Elite Genes (Biomarker Discovery)
 
 
 | Rank | Probe ID | Importance Score |
@@ -170,7 +170,7 @@ From our results, We can now diagnose brain cancer subtypes with 92.31% accuracy
 | 29 | 1556548_at | 0.0262 |
 | 30 | 1561486_at | 0.0122 |
 
-## **Model Performance Comparison**
+## Model Performance Comparison
 
 | Model | Accuracy | Precision | Recall | F1-Score |
 |-------|----------|-----------|--------|----------|
@@ -179,7 +179,7 @@ From our results, We can now diagnose brain cancer subtypes with 92.31% accuracy
 | **Random Forest (Tuned + RFE)** | **92.31%** | **0.92** | **0.92** | **0.92** |
 
 
-### ** Model Metrics**
+### *Model Metrics
 
                             precision    recall  f1-score   support
            ependymoma       1.00      0.89      0.94         9
@@ -192,7 +192,7 @@ From our results, We can now diagnose brain cancer subtypes with 92.31% accuracy
             macro avg       0.93      0.93      0.92        26
          weighted avg       0.94      0.92      0.92        26
 
-### **Confusion Matrix**
+### Confusion Matrix
 
                      Predicted
                      
@@ -205,7 +205,7 @@ From our results, We can now diagnose brain cancer subtypes with 92.31% accuracy
     Pilocytic Astro   0    0    0    0    3
 
 
-# **Licence**
+# Licence
 
 - This project is licensed under the Apache License 2.0
 - Copyright (c) 2026 Group 19 - TS ACADEMY Capstone Project
@@ -231,5 +231,3 @@ You may obtain a copy of the License at:
 - Yadav, K., & Ranga, V. (2025). Integrated analysis of gene expressions and targeted mirnas for explaining crosstalk between oral and esophageal squamous cell carcinomas through an interpretable machine learning approach. Medical & Biological Engineering & Computing, 63(2), 483–495. https://doi.org/10.1007/s11517-024-03210-z 
 - Suita, Y., Bright, H., Pu, Y., Toruner, M. D., Idehen, J., Tapinos, N., & Singh, R. (2025). Machine learning on multiple epigenetic features reveals H3K27Ac as a driver of gene expression prediction across patients with glioblastoma. PLOS Computational Biology, 21(8), e1012272. https://doi.org/10.1371/journal.pcbi.1012272 
 - Suarez-Meade, P., Clemenceau, J. R., Barnfather, I., Edgar, M., Basil, A., Hwang, T. H., & Quinones-Hinojosa, A. (2025). Multi-Omics Integration and Mapping of Invasion Markers Reveal Tumor-Specific Druggable Targets in Primary Human Glioblastoma. Neurosurgery, 71(Supplement_1), 121–122. https://doi.org/10.1227/neu.0000000000003360_494
-
-
